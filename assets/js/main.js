@@ -13,7 +13,7 @@ const listadoTareas = [
     {
         id:1223123,
         tarea: 'Practicar css',
-        estado: false
+        estado: true
     },
     {
         id:12312343434,
@@ -39,6 +39,8 @@ RenderListadoTareas = () =>{
 
             </div>`   
 }filas.innerHTML = html
+Total()
+conteo()
 }
 
 RenderListadoTareas()
@@ -55,7 +57,6 @@ btnAgregar.addEventListener('click',()=>{
     listadoTareas.push(tarea)
     nuevaTarea.value = ''
     RenderListadoTareas()
-    Total()
 /*     realizados() */
 }})
 
@@ -63,7 +64,6 @@ function Borrar(id){
     const index = listadoTareas.findIndex(tarea => tarea.id === id)
     listadoTareas.splice(index,1)
     RenderListadoTareas()
-    Total()
 /*     realizados() */
 }
 
@@ -75,10 +75,11 @@ function Total() {
 function ActualizarEstado(id,estado){
     const index = listadoTareas.findIndex(tarea => tarea.id === id)
     listadoTareas[index].estado = estado
+    RenderListadoTareas()
+}
 
+function conteo(){
     const conteo = listadoTareas.filter(tarea => tarea.estado === true).length
     realizados.innerHTML = conteo
-    RenderListadoTareas()
-    Total()
 }
 /*     realizados() */
