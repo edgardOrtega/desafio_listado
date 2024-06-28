@@ -25,7 +25,7 @@ const listadoTareas = [
 RenderListadoTareas = () =>{
     let html = ''
     for (let listado of listadoTareas){
-        html += `<div class="col-3 text-end" style="color: ${listado.estado ? 'green; text-decoration:line-through;'  : 'black'};">
+        html += `<div class="col-3 text-center" style="color: ${listado.estado ? 'green; text-decoration:line-through;'  : 'black'};">
                 <strong>${listado.id}</strong> 
             </div>
             <div class="col-3" style="color: ${listado.estado ? 'green ; text-decoration:line-through;' : 'black'};">
@@ -44,13 +44,20 @@ RenderListadoTareas = () =>{
 RenderListadoTareas()
 
 btnAgregar.addEventListener('click',()=>{
+    if (nuevaTarea.value.trim() === '') {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Oops...',
+            text: '¡El campo de tarea no puede estar vacío!',
+        });
+    } else {
     tarea = {id:Date.now(),tarea:nuevaTarea.value,estado:false}
     listadoTareas.push(tarea)
     nuevaTarea.value = ''
     RenderListadoTareas()
     Total()
 /*     realizados() */
-})
+}})
 
 function Borrar(id){
     const index = listadoTareas.findIndex(tarea => tarea.id === id)
