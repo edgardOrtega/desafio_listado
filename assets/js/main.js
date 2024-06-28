@@ -21,6 +21,14 @@ const listadoTareas = [
         estado: false
     }
 ]
+function conteo(){
+    const conteo = listadoTareas.filter(tarea => tarea.estado === true).length
+    realizados.innerHTML = conteo
+}
+function Total() {
+    let contador = listadoTareas.length
+    total.innerHTML = contador
+}
 
 RenderListadoTareas = () =>{
     let html = ''
@@ -67,10 +75,7 @@ function Borrar(id){
 /*     realizados() */
 }
 
-function Total() {
-    let contador = listadoTareas.length
-    total.innerHTML = contador
-}
+
 
 function ActualizarEstado(id,estado){
     const index = listadoTareas.findIndex(tarea => tarea.id === id)
@@ -78,8 +83,5 @@ function ActualizarEstado(id,estado){
     RenderListadoTareas()
 }
 
-function conteo(){
-    const conteo = listadoTareas.filter(tarea => tarea.estado === true).length
-    realizados.innerHTML = conteo
-}
+
 /*     realizados() */
